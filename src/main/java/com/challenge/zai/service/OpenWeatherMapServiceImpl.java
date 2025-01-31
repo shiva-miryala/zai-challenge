@@ -27,7 +27,6 @@ public class OpenWeatherMapServiceImpl implements OpenWeatherMapService {
                 .queryParam("appid",key)
                 .queryParam("units","metric")
                 .build().toUri();
-        //"https://api.openweathermap.org/data/2.5/weather?q=Melbourne,AU&appid=208929ca82740172eb67e2192124c4db&units=metric"
         return restTemplate.getForEntity(uri, OpenWeatherMapResponse.class).getBody();
     }
 
