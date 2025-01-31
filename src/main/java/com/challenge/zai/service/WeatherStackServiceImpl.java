@@ -2,6 +2,7 @@ package com.challenge.zai.service;
 
 import com.challenge.zai.model.weatherstack.WeatherStackResponse;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.cache.annotation.Cacheable;
 import org.springframework.stereotype.Service;
 import org.springframework.web.client.RestTemplate;
 import org.springframework.web.util.UriComponentsBuilder;
@@ -15,6 +16,7 @@ public class WeatherStackServiceImpl implements WeatherStackService{
     private RestTemplate restTemplate;
 
     @Override
+    @Cacheable("weatherStack")
     public WeatherStackResponse getWeather(String city) {
         //No need to specify units param since default is Metric(Celsius and Km/Hr)
         URI uri = UriComponentsBuilder.fromHttpUrl("https://api.weatherstack.com/current")
