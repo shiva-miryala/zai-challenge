@@ -4,6 +4,7 @@ import com.challenge.zai.model.WeatherReport;
 import com.challenge.zai.model.openweathermap.OpenWeatherMapResponse;
 import com.challenge.zai.model.weatherstack.WeatherStackResponse;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.cache.annotation.Cacheable;
 import org.springframework.stereotype.Service;
 import org.springframework.retry.annotation.Retryable;
 import org.springframework.retry.annotation.Recover;
@@ -11,6 +12,7 @@ import org.springframework.retry.annotation.Backoff;
 
 
 @Service
+@Cacheable("weatherService")
 public class WeatherServiceImpl implements WeatherService{
 
     @Autowired
