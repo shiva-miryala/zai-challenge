@@ -19,9 +19,12 @@ public class OpenWeatherMapServiceImpl implements OpenWeatherMapService {
     @Value("${key.openweathermap}")
     private String key;
 
+    @Value("${openweathermap.url}")
+    private String openWeatherMapUrl;
+
     @Cacheable(value="openWeatherMap")
     public OpenWeatherMapResponse getWeather(String city){
-        URI uri = UriComponentsBuilder.fromHttpUrl("https://api.openweathermap.org/data/2.5/weather")
+        URI uri = UriComponentsBuilder.fromHttpUrl(openWeatherMapUrl)
                 // OpenWeatherMap is treating Melbourne as Melbourne of US.. so HardCoding to Melbourne,AU
                 .queryParam("q","Melbourne,AU")
                 .queryParam("appid",key)
